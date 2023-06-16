@@ -55,27 +55,19 @@ const ProductList = () => {
        <Container>
           <Announcements/>
           <Navbar/>
-          <Title>Dresses</Title>
+          <Title>{cat}</Title>
           <FilterContainer>
             <Filter>
               <FilterText>
                   Filter Products : 
               </FilterText>
-              <Select name="color" onChange={handleFilters}>
+              <Select name="location" onChange={handleFilters}>
                 <Option disabled>
-                  Color
+                  Location
                 </Option>
-                <Option>White</Option>
+                <Option>Pune</Option>
                 <Option>Red</Option>
-                <Option>Pink</Option>
-              </Select>
-              <Select name="size" onChange={handleFilters}>
-                <Option disabled>
-                  Size
-                </Option>
-                <Option>X</Option>
-                <Option>Big</Option>
-                <Option>Deez balls</Option>
+                <Option>Bangalore</Option>
               </Select>
             </Filter>
             <Filter>
@@ -86,8 +78,7 @@ const ProductList = () => {
                 <Option value = "newest">
                   Newest
                 </Option>
-                <Option value = "asc">Price inc</Option>
-                <Option value = "dsc">Price dec</Option>
+                <Option value = "oldest">Oldest</Option>
               </Select>
             </Filter>
           </FilterContainer>

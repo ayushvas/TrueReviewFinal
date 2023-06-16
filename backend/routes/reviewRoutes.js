@@ -7,9 +7,9 @@ const { isAuthenticated } = require('../middleware/auth');
 //review routes
 
 // /api/review/add
-router.post('/review/add/:id', isAuthenticated ,addReview);
+router.post('/review/add/:id' ,addReview);
 // /api/review/show/:id
-router.get('/review/show/:id',isAuthenticated , showReview);
+router.get('/review/show/:id', showReview);
 // /api/review/edit/:review_id
 router.put('/review/edit/:review_id',isAuthenticated , editReview);
 // /api/review/delete/:review_id

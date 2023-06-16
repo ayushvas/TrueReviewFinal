@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { Link } from "react-router-dom";
 
 const Info = styled.div`
     opacity: 0;
@@ -70,7 +71,9 @@ const Product = ({item}) => {
         <Image src = {item.img}/>
         <Info>
             <Icon>
+            <Link to={`/product/${item._id}`}>
                 <ShoppingCartOutlinedIcon/>
+            </Link>
             </Icon>
         </Info>
     </Container>

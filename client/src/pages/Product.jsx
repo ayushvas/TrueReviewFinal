@@ -4,6 +4,11 @@ import Navbar from "../components/Navbar"
 import Announcements from "../components/Announcements"
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
+import Reviews from '../components/Reviews'
+
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { publicRequest } from "../requestMethods";
 
 const Container = styled.div`
 
@@ -36,16 +41,42 @@ const Price = styled.span`
 `
 
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/shop/" + id);
+        setProduct(res.data.shop);
+      } catch {}
+    };
+    getProduct();
+  }, [id]);
+  useEffect(() => {
+    const getReviews = async () => {
+      try {
+        const res = await publicRequest.get("/review/show/" + id);
+        setReviews(res.data.reviews);
+      } catch {}
+    };
+    getReviews();
+  }, [id]);
+  console.log(product);
+  console.log(reviews);
   return (
     <Container>
         <Announcements/>
+        <Navbar/>
         <Wrapper>
           <ImgContainer>
             <Image src=""/>
           </ImgContainer>
           <InfoContainer>
             <Title>
-              Poo
+              {product.shopName}
             </Title>
             <Desc>
               Best in the effing town.
@@ -55,7 +86,7 @@ const Product = () => {
             </Price>
           </InfoContainer>
         </Wrapper>
-          <Navbar/>
+          <Reviews reviews={reviews}/>
           <Newsletter/>
           <Footer/>
     </Container>
